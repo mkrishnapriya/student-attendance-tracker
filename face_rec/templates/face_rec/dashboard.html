@@ -1,0 +1,91 @@
+{% extends 'face_rec/main.html' %}
+{% block content %}
+
+<body>
+    <div class="container mx-auto mt-5">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+                <div class="card h-100 shadow-sm border-0">
+                    <img src="https://img.freepik.com/free-vector/portfolio-concept-illustration_114360-126.jpg?t=st=1653803723~exp=1653804323~hmac=c36314333850bb5d04480d16824702f089f1ae66e47fb7b2d51201077a816f1e&w=900"
+                        class="card-img-top" alt="create Dataset" />
+                    <div class="card-body">
+                        <form class="form-signin" action="/create_dataset" method="post">{% csrf_token %}
+                            <!-- <h4 class="text-center">Using Haar Cascades to Capture GreyScale Frontal Face Images</h4> -->
+                            <button class="btn btn-lg btn-primary btn-block" type="button" data-toggle="modal"
+                                data-target="#myModal">Create Dataset</button>
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+                                aria-labelledby="myModalLabel">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title" id="myModalLabel">Input unique id and wait for
+                                                webcam</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <ul>
+                                                <li>For higher accuracy, make sure to stay in room with good lightning.
+                                                </li>
+                                                <li>Please remove any type of accesories from face.</li>
+                                                <li>Make sure your face in clearly visible in camera.</li>
+                                                <li>Make sure your hair is not blocking the face.</li>
+                                                <li>Make sure no other faces are within the cam frame.</li>
+                                            </ul>
+                                            <hr />
+                                            <form action="#" method="POST">
+                                                {% csrf_token %}
+                                                <div class="form-group">
+                                                    <label for="inputId">Enter Unique ID*</label>
+                                                    <input type="text" class="form-control" name="userId" id="inputId"
+                                                        placeholder="Enter Id">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="inputId1">Enter Unique Name*</label>
+                                                    <input type="text" class="form-control" name="userId1" id="inputId"
+                                                        placeholder="Enter Name">
+                                                </div>
+                                                <button type="submit" class="btn btn-warning">Submit</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card h-100 shadow-sm border-0">
+                    <img src="https://img.freepik.com/free-vector/brain-with-digital-circuit-programmer-with-laptop-machine-learning-artificial-intelligence-digital-brain-artificial-thinking-process-concept-vector-isolated-illustration_335657-2246.jpg?t=st=1653804242~exp=1653804842~hmac=052b3cdf7bfa25b8c8b91786d66b664a6492b59b404eb9911ed375ff92362be2&w=900"
+                        class="card-img-top" alt="create Dataset" />
+                    <div class="card-body">
+                        <form class="form-signin card" action="/trainer" method="post">{% csrf_token %}
+                            <!-- <h4 class="text-center">Using LBPH Classifier to Train Model</h4> -->
+                            <button class="btn btn-lg btn-primary btn-block" type="submit">Train The Classifier</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card h-100 shadow-sm border-0">
+                    <img src="https://img.freepik.com/free-vector/isometric-face-recognition-technology-vector_516005-453.jpg?w=900"
+                        class="card-img-top" alt="create Dataset" />
+                    <div class="card-body">
+                        <form class="form-signin card" action="/detect" method="post">{% csrf_token %}
+                            <!-- <h4 class="text-center">Recognizing Faces Using LBPH Recognizer</h4> -->
+                            <button class="btn btn-lg btn-primary btn-block" type="submit">Detect By Camera</button>
+                            {% for message in messages %}
+                            <p class="message">{{message}}</p>
+                            {% endfor %}
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+{% endblock %}

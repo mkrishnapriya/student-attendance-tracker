@@ -1,0 +1,64 @@
+{% extends 'face_rec/main.html' %}
+{% block content %}
+<div class="container">
+	<div class="row w-75 mt-3 mx-auto">
+		<div class="col-md-6">
+			<div class="card border-0">
+				<div class="card-header p-0" style="background-color: #FF4F5C;">
+					<h5 class="card-title text-white text-center mt-2" id="exampleModalLabel"><i
+							class="fas fa-envelope p-2"></i>Send Report</h5>
+				</div>
+				<div class="modal-body">
+					<form method="post" action="/send/" id="#" class="m-3" enctype="multipart/form-data">
+						{% csrf_token %}
+						<div class="form-outline mb-4 row">
+							<div class="col-sm-2">
+								<label class="form-label p-0" for="form3Example4"><i class="fas fa-file fa-2x pt-1" style="color: #385B64;" ></i></label>
+							</div>
+							<div class="col-sm-10 p-0">
+								<input type="file" class="form-control" name="file" multiple required
+								accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+							</div>
+						</div>
+						<div class="form-outline mb-4 row">
+							<div class="col-sm-2">
+								<label class="form-label p-0" for="form3Example4"><i class="fas fa-envelope fa-2x pt-1" style="color: #385B64;"></i></label>
+							</div>
+							<div class="col-sm-10 p-0">
+								<input type="text" name="email" class="form-control" placeholder="email@example.com">
+							</div>
+						</div>
+						<div class="form-outline mb-4 row">
+							<div class="col-sm-2">
+								<label class="form-label p-0" for="form3Example4"><i class="fas fa-heading fa-2x pt-1" style="color: #385B64;"></i></label>
+							</div>
+							<div class="col-sm-10 p-0">
+								<input type="text" name="title" class="form-control" placeholder="Title for mail">
+							</div>
+						</div>
+						<div class="form-outline mb-4 row">
+							<div class="col-sm-2">
+								<label class="form-label p-0" for="form3Example4"><i class="fas fa-circle-info fa-2x pt-1" style="color: #385B64;"></i></label>
+							</div>
+							<div class="col-sm-10 p-0">
+								<input type="text" name="subject" class="form-control" placeholder="Subject">
+							</div>
+						</div>
+						<div class="mx-auto">
+							<button type="submit" class="btn btn-block text-light btn-rounded" style="background-color: #A32C32;">Send Mail</button>
+						</div>
+						{% for message in messages %}
+						<p class="messages">{{message}}</p>
+						{% endfor %}
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<img class="w-100 mt-lg-5"
+				src="https://img.freepik.com/free-vector/emails-concept-illustration_114360-1217.jpg?t=st=1653823415~exp=1653824015~hmac=ccd9eead232c3f3b85c2968591c3ab5bd0808737ccfc9bc8778fd62f1f8b8761&w=740"
+				alt="send mail">
+		</div>
+	</div>
+</div>
+{% endblock %}
